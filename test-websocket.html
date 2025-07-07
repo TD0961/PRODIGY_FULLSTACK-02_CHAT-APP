@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+</head>
+<body>
+    <h1>WebSocket Test</h1>
+    <div id="status">Connecting...</div>
+    <div id="messages"></div>
+    
+    <script>
+        const socket = io('http://localhost:5000');
+        
+        socket.on('connect', () => {
+            document.getElementById('status').textContent = 'Connected!';
+            console.log('Connected to server');
+        });
+        
+        socket.on('disconnect', () => {
+            document.getElementById('status').textContent = 'Disconnected';
+            console.log('Disconnected from server');
+        });
+        
+        socket.on('error', (error) => {
+            document.getElementById('status').textContent = 'Error: ' + error;
+            console.error('Socket error:', error);
+        });
+        
+        socket.on('messages history', (messages) => {
+            console.log('Received messages history:', messages);
+            document.getElementById('messages').innerHTML = '<p>Messages loaded: ' + messages.length + '</p>';
+        });
+        
+        socket.on('chat message', (message) => {
+            console.log('Received message:', message);
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML += '<p><strong>' + message.senderId + ':</strong> ' + message.message + '</p>';
+        });
+        
+        // Test sending a message
+        setTimeout(() => {
+            socket.emit('chat message', {
+                senderId: 'testuser',
+                message: 'Hello from WebSocket test!'
+            });
+        }, 2000);
+    </script>
+    
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</body>
+</html> 

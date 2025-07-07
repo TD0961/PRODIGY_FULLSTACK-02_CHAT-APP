@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App UI Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        
+        @keyframes blob {
+          0% { transform: translate(0px, 0px) scale(1); }
+          33% { transform: translate(30px, -50px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+          100% { transform: translate(0px, 0px) scale(1); }
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        
+        .animate-blob { animation: blob 7s infinite; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-shimmer {
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+          background-size: 200% 100%;
+          animation: shimmer 2s linear infinite;
+        }
+        
+        .glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .text-gradient { background: linear-gradient(to right, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-900 via-pink-900 to-red-900 relative overflow-hidden">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0">
+        <div class="absolute top-10 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animate-float"></div>
+        <div class="absolute top-0 right-4 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animate-float" style="animation-delay: 4s;"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 min-h-screen flex items-center justify-center p-6">
+        <div class="glass rounded-3xl shadow-2xl p-8 max-w-2xl w-full">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl mx-auto mb-6 flex items-center justify-center animate-pulse shadow-lg">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                </div>
+                <h1 class="text-4xl font-bold text-gradient font-display mb-2">Modern Chat App</h1>
+                <p class="text-purple-200 text-lg font-medium">Beautiful UI Features Test</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Glassmorphism Card -->
+                <div class="glass rounded-2xl p-6 hover:transform hover:scale-105 transition-all duration-300">
+                    <h3 class="text-xl font-semibold text-white mb-3">Glassmorphism Design</h3>
+                    <p class="text-purple-200">This card demonstrates the glassmorphism effect with backdrop blur and transparency.</p>
+                </div>
+
+                <!-- Gradient Text -->
+                <div class="bg-white/5 rounded-2xl p-6">
+                    <h3 class="text-xl font-semibold text-gradient mb-3">Gradient Text</h3>
+                    <p class="text-purple-200">Beautiful gradient text effects that add visual appeal to your content.</p>
+                </div>
+
+                <!-- Animated Button -->
+                <button class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-2xl font-semibold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    Animated Button
+                </button>
+
+                <!-- Floating Elements -->
+                <div class="flex justify-center space-x-4">
+                    <div class="w-8 h-8 bg-purple-400 rounded-full animate-float"></div>
+                    <div class="w-8 h-8 bg-pink-400 rounded-full animate-float" style="animation-delay: 1s;"></div>
+                    <div class="w-8 h-8 bg-blue-400 rounded-full animate-float" style="animation-delay: 2s;"></div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <p class="text-purple-200">All modern UI features are working correctly! 🎉</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
